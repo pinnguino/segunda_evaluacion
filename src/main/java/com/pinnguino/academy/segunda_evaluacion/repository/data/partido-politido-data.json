@@ -1,0 +1,22 @@
+[
+  {
+    "nombre": "Unión Demócrata Federal",
+    "sigla": "UDF"
+  },
+  {
+    "nombre": "Fuerza Progresista",
+    "sigla": "FP"
+  },
+  {
+    "nombre": "Alianza Ciudadana",
+    "sigla": "AC"
+  },
+  {
+    "nombre": "Partido de la Libertad",
+    "sigla": "PL"
+  },
+  {
+    "nombre": "Movimiento Social",
+    "sigla": "MS"
+  }
+]
