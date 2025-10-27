@@ -14,7 +14,7 @@ public class Candidato {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String nombreCompleto;
 
     @ManyToOne(fetch = FetchType.LAZY)
