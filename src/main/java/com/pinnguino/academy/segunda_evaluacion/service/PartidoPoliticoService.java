@@ -50,4 +50,8 @@ public class PartidoPoliticoService {
         else throw new PartidoPoliticoNoEncontradoException(id);
     }
 
+    public boolean exists(Long id) {
+        return repository.existsById(id);
+    }
+
 }
