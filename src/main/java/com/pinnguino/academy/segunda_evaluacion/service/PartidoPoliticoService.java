@@ -26,28 +26,37 @@ public class PartidoPoliticoService {
         return repository.findAll();
     }
 
-    public PartidoPolitico getById(Long id) throws PartidoPoliticoNoEncontradoException {
+    public PartidoPolitico getById(Long id)
+            throws PartidoPoliticoNoEncontradoException {
+
         return repository.findById(id).orElseThrow(() -> new PartidoPoliticoNoEncontradoException(id));
+
     }
 
     public PartidoPolitico create(PartidoPolitico partido) {
         return repository.save(partido);
     }
 
-    public PartidoPolitico update(Long id, PartidoPolitico actualizado) throws PartidoPoliticoNoEncontradoException {
+    public PartidoPolitico update(Long id, PartidoPolitico actualizado)
+            throws PartidoPoliticoNoEncontradoException {
+
         PartidoPolitico actual = repository.findById(id).orElseThrow(() -> new PartidoPoliticoNoEncontradoException(id));
 
         actual.setNombre(actualizado.getNombre());
         actual.setSigla(actualizado.getSigla());
 
         return repository.save(actual);
+
     }
 
-    public void delete(Long id) throws PartidoPoliticoNoEncontradoException {
-        if(repository.existsById(id)){
-            repository.deleteById(id);
+    public void delete(Long id)
+            throws PartidoPoliticoNoEncontradoException {
+
+        if(!repository.existsById(id)){
+            throw new PartidoPoliticoNoEncontradoException(id);
         }
-        else throw new PartidoPoliticoNoEncontradoException(id);
+        repository.deleteById(id);
+
     }
 
     public boolean exists(Long id) {

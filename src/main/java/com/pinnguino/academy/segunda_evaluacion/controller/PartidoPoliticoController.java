@@ -22,9 +22,9 @@ public class PartidoPoliticoController {
         this.service = service;
     }
 
-    @GetMapping("/init")
+    @PostMapping("/init")
     public ResponseEntity<List<PartidoPolitico>> init(@RequestBody List<PartidoPolitico> partidos) {
-        return new ResponseEntity<>(service.init(partidos), HttpStatus.OK);
+        return new ResponseEntity<>(service.init(partidos), HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -36,9 +36,11 @@ public class PartidoPoliticoController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<PartidoPolitico> getPartidosPoliticos(@PathVariable Long id) throws PartidoPoliticoNoEncontradoException {
-        PartidoPolitico partido = service.getById(id);
-        return new ResponseEntity<>(partido, HttpStatus.OK);
+    public ResponseEntity<PartidoPolitico> getPartidosPoliticos(@PathVariable Long id)
+            throws PartidoPoliticoNoEncontradoException {
+
+        return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
+
     }
 
     @PostMapping
@@ -47,8 +49,8 @@ public class PartidoPoliticoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PartidoPolitico> updatePartido(@PathVariable Long id, @RequestBody PartidoPolitico partido) throws PartidoPoliticoNoEncontradoException {
-        PartidoPolitico actual = service.getById(id);
+    public ResponseEntity<PartidoPolitico> updatePartido(@PathVariable Long id, @RequestBody PartidoPolitico partido)
+            throws PartidoPoliticoNoEncontradoException {
 
         return new ResponseEntity<>(service.update(id, partido), HttpStatus.OK);
 
