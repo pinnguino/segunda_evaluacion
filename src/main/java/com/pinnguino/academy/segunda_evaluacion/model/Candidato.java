@@ -17,7 +17,7 @@ public class Candidato {
     private Long id;
     private String nombreCompleto;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "partido_politico_id", nullable = false)
     private PartidoPolitico partidoPolitico;
 

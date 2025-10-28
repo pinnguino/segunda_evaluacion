@@ -18,7 +18,7 @@ public class Voto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "candidato_id", nullable = true) // Entiendo que el voto puede ser nulo.
     private Candidato candidato;
 
