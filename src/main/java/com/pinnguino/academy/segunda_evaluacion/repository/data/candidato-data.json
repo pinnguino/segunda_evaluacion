@@ -1,0 +1,42 @@
+[
+  {
+    "nombreCompleto": "Elena Ríos",
+    "partidoPolitico": 1
+  },
+  {
+    "nombreCompleto": "Fernando Gómez",
+    "partidoPolitico": 1
+  },
+  {
+    "nombreCompleto": "Laura Montes",
+    "partidoPolitico": 2
+  },
+  {
+    "nombreCompleto": "Ricardo Solís",
+    "partidoPolitico": 2
+  },
+  {
+    "nombreCompleto": "Sofía Castro",
+    "partidoPolitico": 3
+  },
+  {
+    "nombreCompleto": "Miguel Ángel Torres",
+    "partidoPolitico": 3
+  },
+  {
+    "nombreCompleto": "Valentina Pérez",
+    "partidoPolitico": 4
+  },
+  {
+    "nombreCompleto": "Jorge Navarro",
+    "partidoPolitico": 4
+  },
+  {
+    "nombreCompleto": "Camila Rojas",
+    "partidoPolitico": 5
+  },
+  {
+    "nombreCompleto": "Andrés Soto",
+    "partidoPolitico": 5
+  }
+]
