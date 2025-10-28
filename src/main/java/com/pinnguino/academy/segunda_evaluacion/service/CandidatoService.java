@@ -2,7 +2,7 @@ package com.pinnguino.academy.segunda_evaluacion.service;
 
 import com.pinnguino.academy.segunda_evaluacion.exception.CandidatoNotFoundException;
 import com.pinnguino.academy.segunda_evaluacion.exception.DatosInvalidosException;
-import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNoEncontradoException;
+import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNotFoundException;
 import com.pinnguino.academy.segunda_evaluacion.model.Candidato;
 import com.pinnguino.academy.segunda_evaluacion.repository.CandidatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +40,14 @@ public class CandidatoService {
     }
 
     public Candidato create(Candidato candidato)
-            throws DatosInvalidosException, PartidoPoliticoNoEncontradoException {
+            throws DatosInvalidosException, PartidoPoliticoNotFoundException {
 
         Long partidoPoliticoId = candidato.getPartidoPolitico().getId();
         if(partidoPoliticoId == null){
             throw new DatosInvalidosException();
         }
         else if(!partidoPoliticoService.exists(partidoPoliticoId)) {
-            throw new PartidoPoliticoNoEncontradoException(partidoPoliticoId);
+            throw new PartidoPoliticoNotFoundException(partidoPoliticoId);
         }
 
         candidato.setPartidoPolitico(partidoPoliticoService.getById(partidoPoliticoId));
@@ -55,7 +55,7 @@ public class CandidatoService {
     }
 
     public Candidato update(Long id, Candidato actualizado)
-            throws DatosInvalidosException, PartidoPoliticoNoEncontradoException, CandidatoNotFoundException {
+            throws DatosInvalidosException, PartidoPoliticoNotFoundException, CandidatoNotFoundException {
 
         Candidato actual =  repository.findById(id).orElseThrow(() -> new CandidatoNotFoundException(id));
         Long idPartidoPolitico = actualizado.getPartidoPolitico().getId();
@@ -64,7 +64,7 @@ public class CandidatoService {
             throw new DatosInvalidosException();
         }
         else if(!partidoPoliticoService.exists(idPartidoPolitico)) {
-            throw new PartidoPoliticoNoEncontradoException(idPartidoPolitico);
+            throw new PartidoPoliticoNotFoundException(idPartidoPolitico);
         }
 
         actual.setNombreCompleto(actualizado.getNombreCompleto());
@@ -83,6 +83,10 @@ public class CandidatoService {
 
         repository.deleteById(id);
 
+    }
+
+    public boolean exists(Long id) {
+        return repository.existsById(id);
     }
 
 }

@@ -1,10 +1,9 @@
 package com.pinnguino.academy.segunda_evaluacion.controller;
 
-import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNoEncontradoException;
+import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNotFoundException;
 import com.pinnguino.academy.segunda_evaluacion.model.PartidoPolitico;
 import com.pinnguino.academy.segunda_evaluacion.service.PartidoPoliticoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +36,7 @@ public class PartidoPoliticoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PartidoPolitico> getPartidosPoliticos(@PathVariable Long id)
-            throws PartidoPoliticoNoEncontradoException {
+            throws PartidoPoliticoNotFoundException {
 
         return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
 
@@ -50,14 +49,14 @@ public class PartidoPoliticoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<PartidoPolitico> updatePartido(@PathVariable Long id, @RequestBody PartidoPolitico partido)
-            throws PartidoPoliticoNoEncontradoException {
+            throws PartidoPoliticoNotFoundException {
 
         return new ResponseEntity<>(service.update(id, partido), HttpStatus.OK);
 
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePartido(@PathVariable Long id) throws PartidoPoliticoNoEncontradoException {
+    public ResponseEntity<Void> deletePartido(@PathVariable Long id) throws PartidoPoliticoNotFoundException {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

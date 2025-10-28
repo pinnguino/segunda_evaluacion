@@ -2,7 +2,7 @@ package com.pinnguino.academy.segunda_evaluacion.controller;
 
 import com.pinnguino.academy.segunda_evaluacion.exception.CandidatoNotFoundException;
 import com.pinnguino.academy.segunda_evaluacion.exception.DatosInvalidosException;
-import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNoEncontradoException;
+import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNotFoundException;
 import com.pinnguino.academy.segunda_evaluacion.model.Candidato;
 import com.pinnguino.academy.segunda_evaluacion.service.CandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +43,13 @@ public class CandidatoController {
 
     @PostMapping
     public ResponseEntity<Candidato> createCandidato(@RequestBody Candidato candidato)
-            throws PartidoPoliticoNoEncontradoException, DatosInvalidosException {
+            throws PartidoPoliticoNotFoundException, DatosInvalidosException {
         return new ResponseEntity<>(service.create(candidato), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Candidato> updateCandidato(@PathVariable Long id, @RequestBody Candidato candidato)
-            throws CandidatoNotFoundException, PartidoPoliticoNoEncontradoException, DatosInvalidosException {
+            throws CandidatoNotFoundException, PartidoPoliticoNotFoundException, DatosInvalidosException {
 
         return new ResponseEntity<>(service.update(id, candidato), HttpStatus.OK);
 

@@ -1,6 +1,6 @@
 package com.pinnguino.academy.segunda_evaluacion.service;
 
-import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNoEncontradoException;
+import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNotFoundException;
 import com.pinnguino.academy.segunda_evaluacion.model.PartidoPolitico;
 import com.pinnguino.academy.segunda_evaluacion.repository.PartidoPoliticoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,9 @@ public class PartidoPoliticoService {
     }
 
     public PartidoPolitico getById(Long id)
-            throws PartidoPoliticoNoEncontradoException {
+            throws PartidoPoliticoNotFoundException {
 
-        return repository.findById(id).orElseThrow(() -> new PartidoPoliticoNoEncontradoException(id));
+        return repository.findById(id).orElseThrow(() -> new PartidoPoliticoNotFoundException(id));
 
     }
 
@@ -38,9 +38,9 @@ public class PartidoPoliticoService {
     }
 
     public PartidoPolitico update(Long id, PartidoPolitico actualizado)
-            throws PartidoPoliticoNoEncontradoException {
+            throws PartidoPoliticoNotFoundException {
 
-        PartidoPolitico actual = repository.findById(id).orElseThrow(() -> new PartidoPoliticoNoEncontradoException(id));
+        PartidoPolitico actual = repository.findById(id).orElseThrow(() -> new PartidoPoliticoNotFoundException(id));
 
         actual.setNombre(actualizado.getNombre());
         actual.setSigla(actualizado.getSigla());
@@ -50,10 +50,10 @@ public class PartidoPoliticoService {
     }
 
     public void delete(Long id)
-            throws PartidoPoliticoNoEncontradoException {
+            throws PartidoPoliticoNotFoundException {
 
         if(!repository.existsById(id)){
-            throw new PartidoPoliticoNoEncontradoException(id);
+            throw new PartidoPoliticoNotFoundException(id);
         }
         repository.deleteById(id);
 
