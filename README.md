@@ -4,14 +4,17 @@ Proyecto de ejemplo (Java 17, Spring Boot) para gestionar candidaturas, partidos
 
 ## Descripción
 - Es una API REST desarrollada con Spring Boot que permite gestionar entidades básicas de una votación: candidatos, partidos políticos y votos.
+- Enfocada en el uso de buenas prácticas gracias al analizador SonarQube.
 - Contiene controladores (`CandidatoController`, `PartidoPoliticoController`, `VotoController`) y servicios para la lógica de negocio.
 - Los datos iniciales están en formato JSON dentro de `src/main/java/com/pinnguino/academy/segunda_evaluacion/repository/data/`.
 - Usa Spring Data JPA y una base de datos H2 en memoria para ejecución local.
 
-## Puntos clave
+## Tech stack
 - Lenguaje: Java 17
 - Framework: Spring Boot
 - Dependencias principales: Spring Web, Spring Data JPA, H2, Lombok (opcional)
+- Testing: JUnit 5 y Mockito para pruebas unitarias
+- Documentación: OpenAPI/Swagger para documentación de APIs
 
 ---
 
@@ -26,8 +29,7 @@ Ejecutar localmente (Windows - PowerShell)
 
 ```powershell
 # Compilar
-.\
-wnw.cmd -q clean package
+.\mvnw.cmd -q clean package
 
 # Ejecutar la app
 .\mvnw.cmd spring-boot:run
@@ -50,6 +52,40 @@ Ejecutar tests
 
 ---
 
-### Notas
-- Los endpoints exactos y formatos de request/response están definidos en los controladores del proyecto. Revisa `controller/` para ver las rutas disponibles.
-- La aplicación está pensada como proyecto didáctico para una evaluación; es mínima y fácil de extender.
+# Documentación de la API
+La API está completamente documentada usando OpenAPI/Swagger. Puedes acceder a la documentación desde SwaggerUI con accediento al siguiente enlace con la aplicación levantada:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+## Tests Unitarios
+El proyecto incluye una suite completa de pruebas unitarias implementadas con:
+- **JUnit 5**: Framework de testing
+- **Mockito**: Framework de mocking para simular dependencias
+
+Los tests cubren:
+- **Controladores**: Pruebas de endpoints REST
+- **Servicios**: Pruebas de lógica de negocio
+- **Casos de éxito y error**: Validación de flujos normales y excepcionales
+
+Ubicación de los tests:
+
+```
+src/test/java/com/pinnguino/academy/segunda_evaluacion/
+├── controller/
+│   ├── CandidatoControllerTest.java
+│   ├── PartidoPoliticoControllerTest.java
+│   └── VotoControllerTest.java
+└── service/
+    ├── CandidatoServiceTest.java
+    ├── PartidoPoliticoServiceTest.java
+    └── VotoServiceTest.java
+```
+
+---
+
+# Buenas prácticas
+
+A continuación se ve una captura de pantalla de el análisis de SonarQube para todo el proyecto. No se encontraron problemas.
+![SonarQube](/assets/sonarQube-screenshot.png)
