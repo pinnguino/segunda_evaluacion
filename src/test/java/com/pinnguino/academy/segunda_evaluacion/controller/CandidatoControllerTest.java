@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pinnguino.academy.segunda_evaluacion.exception.CandidatoNotFoundException;
 import com.pinnguino.academy.segunda_evaluacion.exception.DatosInvalidosException;
 import com.pinnguino.academy.segunda_evaluacion.exception.PartidoPoliticoNotFoundException;
+import com.pinnguino.academy.segunda_evaluacion.exception.handler.GlobalExceptionHandler;
 import com.pinnguino.academy.segunda_evaluacion.model.Candidato;
 import com.pinnguino.academy.segunda_evaluacion.model.PartidoPolitico;
 import com.pinnguino.academy.segunda_evaluacion.service.CandidatoService;
@@ -44,7 +45,7 @@ class CandidatoControllerTest {
     void setup() {
         // Wire the global exception handler so exceptions map to HTTP statuses in tests
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
-                .setControllerAdvice(new com.pinnguino.academy.segunda_evaluacion.exception.handler.GlobalExceptionHandler())
+                .setControllerAdvice(new GlobalExceptionHandler())
                 .build();
 
         lla =  new PartidoPolitico(1L, "La Libertad Avanza", "LLA");
