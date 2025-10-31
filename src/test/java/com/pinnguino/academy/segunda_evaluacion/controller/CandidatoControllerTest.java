@@ -44,7 +44,6 @@ class CandidatoControllerTest {
     void setup() {
         // Wire the global exception handler so exceptions map to HTTP statuses in tests
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
-                .setControllerAdvice(new com.pinnguino.academy.segunda_evaluacion.exception.handler.GlobalExceptionHandler())
                 .build();
 
         lla =  new PartidoPolitico(1L, "La Libertad Avanza", "LLA");

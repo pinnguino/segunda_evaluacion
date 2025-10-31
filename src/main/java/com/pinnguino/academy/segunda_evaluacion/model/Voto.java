@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,4 +27,17 @@ public class Voto {
 
     private LocalDateTime fechaEmision;
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Voto voto = (Voto) obj;
+        return Objects.equals(id, voto.id)
+                && Objects.equals(candidato, voto.candidato)
+                && Objects.equals(fechaEmision, voto.fechaEmision);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, candidato, fechaEmision);
+    }
 }

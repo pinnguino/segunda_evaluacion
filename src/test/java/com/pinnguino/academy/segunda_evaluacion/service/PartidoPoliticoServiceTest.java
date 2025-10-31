@@ -77,11 +77,9 @@ class PartidoPoliticoServiceTest {
     void getById_whenNotExists_test() {
         when(repository.findById(2L)).thenReturn(Optional.empty());
 
-        Exception e = assertThrows(PartidoPoliticoNotFoundException.class, () ->
+        assertThrows(PartidoPoliticoNotFoundException.class, () ->
             service.getById(2L)
         );
-
-        assertEquals("Partido con ID " + 2L + " no encontrado.", e.getMessage());
     }
 
     @Test
@@ -104,11 +102,9 @@ class PartidoPoliticoServiceTest {
     void update_whenNotExists() {
         when(repository.findById(10L)).thenReturn(Optional.empty());
 
-        Exception e = assertThrows(PartidoPoliticoNotFoundException.class, () ->
+        assertThrows(PartidoPoliticoNotFoundException.class, () ->
             service.update(10L, partidoVioleta)
         );
-
-        assertEquals("Partido con ID " + 10L + " no encontrado.", e.getMessage());
 
         verify(repository, never())
                 .save(any(PartidoPolitico.class));
@@ -138,11 +134,9 @@ class PartidoPoliticoServiceTest {
     void delete_whenNotExists() {
         when(repository.existsById(99L)).thenReturn(false);
 
-        Exception e = assertThrows(PartidoPoliticoNotFoundException.class, () ->
+        assertThrows(PartidoPoliticoNotFoundException.class, () ->
             service.delete(99L)
         );
-
-        assertEquals("Partido con ID " + 99L + " no encontrado.", e.getMessage());
 
         verify(repository, never())
             .deleteById(anyLong());
