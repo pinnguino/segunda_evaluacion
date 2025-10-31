@@ -9,7 +9,6 @@ import com.pinnguino.academy.segunda_evaluacion.service.VotoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,11 +44,9 @@ public class VotoController {
     }
 
     @Operation(summary = "Registra un nuevo voto", description = "Crea un nuevo voto en el sistema")
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Voto registrado exitosamente"),
-        @ApiResponse(responseCode = "400", description = "Datos inválidos para el voto"),
-        @ApiResponse(responseCode = "404", description = "Candidato o partido político no encontrado")
-    })
+    @ApiResponse(responseCode = "201", description = "Voto registrado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Datos inválidos para el voto")
+    @ApiResponse(responseCode = "404", description = "Candidato o partido político no encontrado")
     @PostMapping
     public ResponseEntity<Voto> createVoto(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Datos del voto a registrar") 
@@ -60,10 +57,8 @@ public class VotoController {
 
     @Operation(summary = "Obtiene cantidad de votos por candidato", 
               description = "Retorna la cantidad de votos que tiene un candidato específico")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Cantidad de votos recuperada exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Candidato no encontrado")
-    })
+    @ApiResponse(responseCode = "200", description = "Cantidad de votos recuperada exitosamente")
+    @ApiResponse(responseCode = "404", description = "Candidato no encontrado")
     @GetMapping("/cantVotos/candidato/{id}")
     public ResponseEntity<CantidadVotosDTO> votesByCandidato(
             @Parameter(description = "ID del candidato") @PathVariable Long id) 
@@ -73,10 +68,8 @@ public class VotoController {
 
     @Operation(summary = "Obtiene cantidad de votos por partido político", 
               description = "Retorna la cantidad de votos que tiene un partido político específico")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Cantidad de votos recuperada exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
-    })
+    @ApiResponse(responseCode = "200", description = "Cantidad de votos recuperada exitosamente")
+    @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
     @GetMapping("/cantVotos/partido/{id}")
     public ResponseEntity<CantidadVotosDTO> votesByPartido(
             @Parameter(description = "ID del partido político") @PathVariable Long id) 

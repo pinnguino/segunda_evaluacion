@@ -8,7 +8,6 @@ import com.pinnguino.academy.segunda_evaluacion.service.CandidatoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,10 +43,8 @@ public class CandidatoController {
     }
 
     @Operation(summary = "Obtiene un candidato por ID", description = "Retorna un candidato específico basado en su ID")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Candidato encontrado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Candidato no encontrado")
-    })
+    @ApiResponse(responseCode = "200", description = "Candidato encontrado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Candidato no encontrado")
     @GetMapping("/{id}")
     public ResponseEntity<Candidato> getCandidatoById(@Parameter(description = "ID del candidato") @PathVariable Long id)
             throws CandidatoNotFoundException {
@@ -57,11 +54,9 @@ public class CandidatoController {
     }
 
     @Operation(summary = "Crea un nuevo candidato", description = "Crea un nuevo candidato en el sistema")
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Candidato creado exitosamente"),
-        @ApiResponse(responseCode = "400", description = "Datos inválidos para el candidato"),
-        @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
-    })
+    @ApiResponse(responseCode = "201", description = "Candidato creado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Datos inválidos para el candidato")
+    @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
     @PostMapping
     public ResponseEntity<Candidato> createCandidato(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Datos del candidato a crear") 
@@ -71,11 +66,9 @@ public class CandidatoController {
     }
 
     @Operation(summary = "Actualiza un candidato", description = "Actualiza los datos de un candidato existente")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Candidato actualizado exitosamente"),
-        @ApiResponse(responseCode = "400", description = "Datos inválidos para el candidato"),
-        @ApiResponse(responseCode = "404", description = "Candidato o partido político no encontrado")
-    })
+    @ApiResponse(responseCode = "200", description = "Candidato actualizado exitosamente")
+    @ApiResponse(responseCode = "400", description = "Datos inválidos para el candidato")
+    @ApiResponse(responseCode = "404", description = "Candidato o partido político no encontrado")
     @PutMapping("/{id}")
     public ResponseEntity<Candidato> updateCandidato(
             @Parameter(description = "ID del candidato") @PathVariable Long id,
@@ -86,10 +79,8 @@ public class CandidatoController {
     }
 
     @Operation(summary = "Elimina un candidato", description = "Elimina un candidato del sistema")
-    @ApiResponses({
-        @ApiResponse(responseCode = "204", description = "Candidato eliminado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Candidato no encontrado")
-    })
+    @ApiResponse(responseCode = "204", description = "Candidato eliminado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Candidato no encontrado")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCandidato(
             @Parameter(description = "ID del candidato") @PathVariable Long id)

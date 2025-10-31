@@ -6,7 +6,6 @@ import com.pinnguino.academy.segunda_evaluacion.service.PartidoPoliticoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,10 +42,8 @@ public class PartidoPoliticoController {
     }
 
     @Operation(summary = "Obtiene un partido político por ID", description = "Retorna un partido político específico basado en su ID")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Partido político encontrado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
-    })
+    @ApiResponse(responseCode = "200", description = "Partido político encontrado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
     @GetMapping("/{id}")
     public ResponseEntity<PartidoPolitico> getPartidosPoliticos(
             @Parameter(description = "ID del partido político") @PathVariable Long id)
@@ -57,9 +54,7 @@ public class PartidoPoliticoController {
     }
 
     @Operation(summary = "Crea un nuevo partido político", description = "Crea un nuevo partido político en el sistema")
-    @ApiResponses({
-        @ApiResponse(responseCode = "201", description = "Partido político creado exitosamente")
-    })
+    @ApiResponse(responseCode = "201", description = "Partido político creado exitosamente")
     @PostMapping
     public ResponseEntity<PartidoPolitico> createPartido(
             @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Datos del partido político a crear") 
@@ -68,10 +63,8 @@ public class PartidoPoliticoController {
     }
 
     @Operation(summary = "Actualiza un partido político", description = "Actualiza los datos de un partido político existente")
-    @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Partido político actualizado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
-    })
+    @ApiResponse(responseCode = "200", description = "Partido político actualizado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
     @PutMapping("/{id}")
     public ResponseEntity<PartidoPolitico> updatePartido(
             @Parameter(description = "ID del partido político") @PathVariable Long id,
@@ -82,10 +75,8 @@ public class PartidoPoliticoController {
     }
 
     @Operation(summary = "Elimina un partido político", description = "Elimina un partido político del sistema")
-    @ApiResponses({
-        @ApiResponse(responseCode = "204", description = "Partido político eliminado exitosamente"),
-        @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
-    })
+    @ApiResponse(responseCode = "204", description = "Partido político eliminado exitosamente")
+    @ApiResponse(responseCode = "404", description = "Partido político no encontrado")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePartido(
             @Parameter(description = "ID del partido político") @PathVariable Long id) 

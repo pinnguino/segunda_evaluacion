@@ -8,6 +8,7 @@ class SegundaEvaluacionApplicationTests {
 
     @Test
     void contextLoads() {
+        throw new UnsupportedOperationException("Operación no soportada aún.");
     }
 
 }
